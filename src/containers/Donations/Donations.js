@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchDonations } from '../../apiCalls.js'
 import { connect } from 'react-redux'
 import { getDonations, hasErrored, getIsLoading} from '../../actions'
+import {DonationsCard} from '../DonationsCard'
 
 
 
@@ -19,16 +20,12 @@ class AnimalContainer extends Component {
 
   render() {
 
-    // const buildAnimalCards = this.props.animals.map(animal => {
-    //   return <AnimalCard 
-    //   name={animal.name} 
-    //   img={animal.img} 
-    //   species={animal.species} 
-    //   description={animal.description} 
-    //   id= {animal.id}
-    //   key={animal.id}
-    // />
-    // })
+    const buildDonationCards = this.props.donations.map(don => {
+      return <DonationsCard 
+      name={don.name} 
+      donation={don.donation} 
+    />
+    })
     return(
       <section>
         <header>
@@ -39,8 +36,8 @@ class AnimalContainer extends Component {
           <p>{this.props.error}</p>
           }
         </header>
-        <section className='card-container'>
-        
+        <section className='donation-container'>
+        {buildDonationCards}
         </section>
       </section>
     )
