@@ -28,6 +28,9 @@ class DonationForm extends Component {
       await this.props.hasErrored(error)
     }
   }
+  clearInputs = () => {
+    this.setState({name:'', donation: 0})
+  }
 
   render() {
     return(

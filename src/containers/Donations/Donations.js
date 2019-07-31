@@ -51,11 +51,4 @@ export const mapStateToProps = (state) => ({
   error: state.error
 })
 
-export const mapDispatchToProps = (dispatch) => ({
-  getDonations: (donations) => (dispatch(getDonations(donations))),
-  hasErrored: (error) => (dispatch(hasErrored(error))),
-  getIsLoading: (isLoading) => (dispatch(getIsLoading(isLoading)))
-
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AnimalContainer);
+export default connect(mapStateToProps)(AnimalContainer);
