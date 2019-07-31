@@ -8,7 +8,7 @@ export const hasErrored = (error) => ({
   error
 })
 
-export const isLoading = (isLoading) => ({
-  type: 'IS_LOADING',
+export const getIsLoading = (isLoading) => ({
+  type: 'GET_IS_LOADING',
   isLoading
 })
