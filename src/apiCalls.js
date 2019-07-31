@@ -16,3 +16,21 @@ export const fetchAnimals = async () => {
   }
 }
 
+export const fetchDonations = async () => {
+  try {
+    const options = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify(animals)
+    }
+    const response = await fetch('http://localhost:3001/api/v1/donations', options)
+    if (!response.ok) {
+      throw new Error ('Error fetching donations')
+    }
+    const donations = response.json()
+    return donations
+  } catch(error) {
+    throw new Error(error.message)
+  }
+}
+

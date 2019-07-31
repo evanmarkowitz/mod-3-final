@@ -12,3 +12,8 @@ export const getIsLoading = (isLoading) => ({
   type: 'GET_IS_LOADING',
   isLoading
 })
+
+export const getDonations = (donations) => ({
+  type: 'GET_DONATIONS',
+  donations
+})

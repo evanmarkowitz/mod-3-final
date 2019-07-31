@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import { fetchAnimals } from '../../apiCalls.js'
+import { fetchDonations } from '../../apiCalls.js'
 import { connect } from 'react-redux'
-import { getAnimals, hasErrored, getIsLoading} from '../../actions'
-import {AnimalCard } from '../AnimalCard/AnimalCard'
-import './AnimalContainer.css'
+import { getDonations, hasErrored, getIsLoading} from '../../actions'
+
 
 
 class AnimalContainer extends Component {
   
   async componentDidMount() {
     try {
-      let fetchedAnimals = await fetchAnimals()
-      this.props.getAnimals( fetchedAnimals )
+      let fetchedDonations = await fetchDonations()
+      this.props.getDonations( fetchedDonations )
       this.props.getIsLoading(false) 
     } catch(error) {
       await this.props.hasErrored(error)
@@ -20,16 +19,16 @@ class AnimalContainer extends Component {
 
   render() {
 
-    const buildAnimalCards = this.props.animals.map(animal => {
-      return <AnimalCard 
-      name={animal.name} 
-      img={animal.img} 
-      species={animal.species} 
-      description={animal.description} 
-      id= {animal.id}
-      key={animal.id}
-    />
-    })
+    // const buildAnimalCards = this.props.animals.map(animal => {
+    //   return <AnimalCard 
+    //   name={animal.name} 
+    //   img={animal.img} 
+    //   species={animal.species} 
+    //   description={animal.description} 
+    //   id= {animal.id}
+    //   key={animal.id}
+    // />
+    // })
     return(
       <section>
         <header>
@@ -41,7 +40,7 @@ class AnimalContainer extends Component {
           }
         </header>
         <section className='card-container'>
-        {buildAnimalCards}
+        
         </section>
       </section>
     )
@@ -49,15 +48,16 @@ class AnimalContainer extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  animals: state.animals,
+  donations: state.donations,
   isLoading: state.isLoading,
   error: state.error
 })
 
 export const mapDispatchToProps = (dispatch) => ({
-  getAnimals: (animals) => (dispatch(getAnimals(animals))),
+  getDonations: (donations) => (dispatch(getDonations(donations))),
   hasErrored: (error) => (dispatch(hasErrored(error))),
   getIsLoading: (isLoading) => (dispatch(getIsLoading(isLoading)))
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnimalContainer);
