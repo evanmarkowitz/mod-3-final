@@ -9,7 +9,7 @@ class DonationForm extends Component {
     super() 
     this.state = {
       name:'',
-      donation: 0
+      donation: ''
     }
   }
 
