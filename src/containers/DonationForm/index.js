@@ -19,14 +19,7 @@ class DonationForm extends Component {
 
   addDonation = async () => {
     let donation = await {id: Date.now(), name: this.state.name, donation: this.state.donation}
-    try {
-      let confirmDonation = await fetchNewDonation(donation)
-      let allDonations = [...this.props.donations, confirmDonation]
-      this.props.getDonations(allDonations)
-    
-    } catch(error) {
-      await this.props.hasErrored(error)
-    }
+    this.props.addDonation(donation)
   }
   clearInputs = () => {
     this.setState({name:'', donation: 0})

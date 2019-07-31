@@ -1,26 +1,14 @@
-import React, { Component } from 'react'
-import { fetchDonations } from '../../apiCalls.js'
+import React from 'react'
 import { connect } from 'react-redux'
-import { getDonations, hasErrored, getIsLoading} from '../../actions'
 import {DonationsCard} from '../DonationsCard'
 
 
 
-class AnimalContainer extends Component {
+const AnimalContainer = ({ error, isLoading, donations})  =>  {
   
-  async componentDidMount() {
-    try {
-      let fetchedDonations = await fetchDonations()
-      this.props.getDonations( fetchedDonations )
-      this.props.getIsLoading(false) 
-    } catch(error) {
-      await this.props.hasErrored(error)
-    }
-  }
+  
 
-  render() {
-
-    const buildDonationCards = this.props.donations.map(don => {
+    const buildDonationCards = donations.map(don => {
       return <DonationsCard 
       name={don.name} 
       donation={don.donation} 
@@ -30,11 +18,11 @@ class AnimalContainer extends Component {
     return(
       <section>
         <header>
-          {this.props.isLoading && 
+          {isLoading && 
           <p>Please wait while we load this up</p>
           }
-          {this.props.error && 
-          <p>{this.props.error}</p>
+          {error && 
+          <p>{error}</p>
           }
         </header>
         <section className='donation-container'>
@@ -43,7 +31,7 @@ class AnimalContainer extends Component {
       </section>
     )
   }
-}
+
 
 export const mapStateToProps = (state) => ({
   donations: state.donations,
