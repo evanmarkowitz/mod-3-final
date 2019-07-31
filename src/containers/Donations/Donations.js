@@ -24,6 +24,7 @@ class AnimalContainer extends Component {
       return <DonationsCard 
       name={don.name} 
       donation={don.donation} 
+      id = {don.id}
     />
     })
     return(
