@@ -1,14 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {AnimalCard } from '../AnimalCard/AnimalCard'
 import './AnimalContainer.css'
 
 
-class AnimalContainer extends Component {
+const AnimalContainer = ({animals, isLoading, error}) =>  {
   
-  render() {
-
-    const buildAnimalCards = this.props.animals.map(animal => {
+  
+    const buildAnimalCards = animals.map(animal => {
       return <AnimalCard 
       name={animal.name} 
       img={animal.img} 
@@ -18,14 +17,16 @@ class AnimalContainer extends Component {
       key={animal.id}
     />
     })
+
     return(
       <section>
         <header>
-          {this.props.isLoading && 
+          <h1 className='headline'>Protect the animals!</h1>
+          {isLoading && 
           <p>Please wait while we load this up</p>
           }
-          {this.props.error && 
-          <p>{this.props.error}</p>
+          {error && 
+          <p>{error}</p>
           }
         </header>
         <section className='card-container'>
@@ -34,7 +35,7 @@ class AnimalContainer extends Component {
       </section>
     )
   }
-}
+
 
 export const mapStateToProps = (state) => ({
   animals: state.animals,

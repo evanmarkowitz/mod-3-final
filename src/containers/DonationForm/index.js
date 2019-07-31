@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {fetchNewDonation} from '../../apiCalls'
 import { getDonations, hasErrored, getIsLoading} from '../../actions'
+import './DonationForm.css'
 
 class DonationForm extends Component {
 
@@ -20,6 +20,7 @@ class DonationForm extends Component {
   addDonation = async () => {
     let donation = await {id: Date.now(), name: this.state.name, donation: this.state.donation}
     this.props.addDonation(donation)
+    this.clearInputs()
   }
   clearInputs = () => {
     this.setState({name:'', donation: 0})
@@ -36,13 +37,15 @@ class DonationForm extends Component {
           <p>{this.props.error}</p>
           }
         </header>
-        <form>
+        <form className='donation-form'>
+          <h1>Add a donation</h1>
           <input 
           type='text'
           value={this.state.name}
           name = 'name'
           placeholder = 'Name'
           onChange={event => this.handleChange(event)}
+          className='name'
           />
           <input 
           type='text'
@@ -50,6 +53,7 @@ class DonationForm extends Component {
           name = 'donation'
           placeholder = 'Donation'
           onChange={event => this.handleChange(event)}
+          className='donation'
           />
           <button type ='button' onClick={this.addDonation}>Submit</button>
         </form>

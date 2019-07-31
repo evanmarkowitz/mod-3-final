@@ -5,6 +5,8 @@ import DonationForm from '../DonationForm'
 import { getAnimals, hasErrored, getIsLoading, getDonations} from '../../actions'
 import { connect } from 'react-redux'
 import { fetchAnimals, fetchDonations, fetchNewDonation } from '../../apiCalls.js'
+import './App.css'
+
 
 class App extends Component {
   constructor() {
@@ -41,9 +43,17 @@ class App extends Component {
   render() {
     return(
       <main>
+        <header>
+          {this.props.isLoading && 
+          <p>Please wait while we load this up</p>
+          }
+          {this.props.error && 
+          <p>{this.props.error}</p>
+          }
+        </header>
         <AnimalsContainer />
-        <Donations />
         <DonationForm addDonation ={this.addDonation} />
+        <Donations />
       </main>
     )
   }

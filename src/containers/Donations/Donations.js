@@ -4,9 +4,8 @@ import {DonationsCard} from '../DonationsCard'
 
 
 
+
 const AnimalContainer = ({ error, isLoading, donations})  =>  {
-  
-  
 
     const buildDonationCards = donations.map(don => {
       return <DonationsCard 
@@ -15,6 +14,7 @@ const AnimalContainer = ({ error, isLoading, donations})  =>  {
       id = {don.id}
     />
     })
+
     return(
       <section>
         <header>
